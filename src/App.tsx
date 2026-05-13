@@ -91,7 +91,7 @@ export default function App() {
           <div className="bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-200 p-2 transform rotate-3">
              <QrCode size={sidebarExpanded ? 32 : 24} />
           </div>
-          {sidebarExpanded && <span className="mr-3 font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">SMS Pro</span>}
+          {sidebarExpanded && <span className="mr-3 font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">CMS Pro</span>}
         </div>
 
         <nav className="flex-1 w-full px-3 space-y-1 overflow-y-auto overflow-x-hidden">
@@ -130,7 +130,7 @@ export default function App() {
         {/* Header */}
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0 shadow-sm z-10">
           <div className="flex items-center gap-5">
-            <h1 className="text-xl font-bold tracking-tight text-blue-950">نظام إدارة الطلاب</h1>
+            <h1 className="text-xl font-bold tracking-tight text-blue-950">نظام إدارة السنتر</h1>
             <div className="h-8 w-[1px] bg-gray-200" />
             <div className="flex items-center gap-2 text-gray-400">
                {activeItem?.icon && (

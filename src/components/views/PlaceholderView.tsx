@@ -7,7 +7,7 @@ export default function PlaceholderView({ title }: { title: string }) {
         <LayoutDashboard size={48} />
       </div>
       <h2 className="text-2xl font-bold">{title}</h2>
-      <p>هذه الصفحة قيد التطوير حالياً في هذا النموذج الأولي</p>
+      <p>هذه الصفحة قيد التطوير حالياً</p>
     </div>
   );
 }

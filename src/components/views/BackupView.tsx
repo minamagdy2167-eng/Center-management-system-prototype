@@ -32,7 +32,7 @@ export default function BackupView() {
                  <input 
                    disabled
                    type="text" 
-                   value="مثال: C:\backups\backup.smsbackup" 
+                   value="مثال: C:\backups\backup.cmsbackup" 
                    className="w-full p-3 border border-gray-100 rounded-xl bg-gray-50 text-gray-400 text-sm font-mono"
                  />
                </div>
@@ -74,7 +74,7 @@ export default function BackupView() {
              <input 
                disabled
                type="text" 
-               value="مثال: C:\backups\backup.smsbackup" 
+               value="مثال: C:\backups\backup.cmsbackup" 
                className="w-full p-3 border border-gray-100 rounded-xl bg-gray-50 text-gray-400 text-sm font-mono"
              />
           </div>
