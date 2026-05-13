@@ -1,0 +1,6 @@
+{
+  "name": "Student Management System",
+  "description": "A comprehensive student management system with attendance tracking, financial monitoring, and QR code generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
