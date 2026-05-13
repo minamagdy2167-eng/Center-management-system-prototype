@@ -84,17 +84,16 @@ export default function App() {
       <aside 
         className={cn(
           "bg-white border-l border-gray-200 transition-all duration-300 flex flex-col items-center py-4 relative z-20 shrink-0",
-          sidebarExpanded ? "w-64" : "w-20"
+          sidebarExpanded ? "w-64" : "w-16"
         )}
       >
-        <div className="mb-10 flex items-center justify-center p-3">
-          <div className="bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-200 p-2 transform rotate-3">
-             <QrCode size={sidebarExpanded ? 32 : 24} />
+        <div className="mb-10 flex items-center justify-center">
+          <div className="bg-[#0f172a] rounded-lg text-white p-2.5 shadow-sm">
+             <QrCode size={24} />
           </div>
-          {sidebarExpanded && <span className="mr-3 font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">CMS Pro</span>}
         </div>
 
-        <nav className="flex-1 w-full px-3 space-y-1 overflow-y-auto overflow-x-hidden">
+        <nav className="flex-1 w-full px-2 space-y-1 overflow-y-auto overflow-x-hidden">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -102,16 +101,13 @@ export default function App() {
               className={cn(
                 "w-full flex items-center p-3 rounded-xl transition-all group relative",
                 activeView === item.id 
-                  ? "bg-blue-600 text-white shadow-md shadow-blue-100" 
-                  : "text-gray-500 hover:bg-gray-50"
+                  ? "bg-gray-50 text-gray-900 font-bold" 
+                  : "text-gray-500 hover:bg-gray-50/50"
               )}
             >
-              <item.icon size={22} className={cn("shrink-0", activeView === item.id ? "text-white" : "group-hover:text-gray-900")} />
+              <item.icon size={22} className={cn("shrink-0", activeView === item.id ? "text-gray-900" : "group-hover:text-gray-900")} />
               {sidebarExpanded && (
-                <span className="mr-3 font-bold text-sm whitespace-nowrap">{item.label}</span>
-              )}
-              {!sidebarExpanded && activeView === item.id && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-blue-600 rounded-r-full" />
+                <span className="mr-3 text-sm whitespace-nowrap">{item.label}</span>
               )}
             </button>
           ))}
@@ -119,7 +115,7 @@ export default function App() {
 
         <button 
           onClick={() => setSidebarExpanded(!sidebarExpanded)}
-          className="mt-4 mb-4 p-2.5 rounded-xl hover:bg-gray-100 text-gray-400 bg-gray-50 border border-gray-100"
+          className="mt-4 mb-4 p-2.5 rounded-xl hover:bg-gray-100 text-gray-400 group"
         >
           {sidebarExpanded ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
@@ -128,50 +124,21 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden relative">
         {/* Header */}
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0 shadow-sm z-10">
-          <div className="flex items-center gap-5">
-            <h1 className="text-xl font-bold tracking-tight text-blue-950">نظام إدارة السنتر</h1>
-            <div className="h-8 w-[1px] bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-400">
-               {activeItem?.icon && (
-                 <div className="p-1.5 bg-gray-50 rounded-lg">
-                   <activeItem.icon size={18} />
-                 </div>
-               )}
-               <span className="text-sm font-bold text-gray-400 capitalize">{activeItem?.label || activeView}</span>
-            </div>
+        <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 z-10">
+          <div className="flex items-center gap-4">
+             <h1 className="text-xl font-bold tracking-tight text-gray-800">نظام إدارة السنتر</h1>
+             <div className="p-1 px-2 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 cursor-pointer flex items-center justify-center">
+               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-panel-right"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/></svg>
+             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            {/* Search Bar - Hidden on small screens if not enough room */}
-            <div className="hidden lg:flex items-center relative group">
-               <Search size={18} className="absolute right-3 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-               <input 
-                 type="text" 
-                 placeholder="البحث السريع..." 
-                 className="pr-10 pl-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
-               />
-            </div>
-
-            <button className="relative p-2 text-gray-500 hover:bg-gray-50 rounded-xl transition-all border border-transparent hover:border-gray-200 group">
-              <Bell size={20} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
-            </button>
-
-            <div className="flex items-center gap-3 pr-4 border-r border-gray-200">
-              <div className="text-left">
-                <p className="text-xs font-bold text-gray-900">مينا مجدي</p>
-                <p className="text-[10px] text-gray-400 font-medium">مدير النظام</p>
-              </div>
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-xl flex items-center justify-center font-bold shadow-md shadow-blue-100">
-                M
-              </div>
-            </div>
+          <div className="flex items-center gap-4">
+            {/* Header left side empty in ref */}
           </div>
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-y-auto bg-gray-50/50 p-8 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto bg-gray-50/10 p-8 custom-scrollbar">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeView}
