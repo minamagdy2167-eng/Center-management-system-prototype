@@ -40,6 +40,7 @@ import AlertsView from "./components/views/AlertsView";
 import HistoryView from "./components/views/HistoryView";
 import BackupView from "./components/views/BackupView";
 import SettingsView from "./components/views/SettingsView";
+import ReportsView from "./components/views/ReportsView";
 import PlaceholderView from "./components/views/PlaceholderView";
 
 const navItems: NavItem[] = [
@@ -68,14 +69,17 @@ export default function App() {
       case "payments": return <PaymentsView />;
       case "alerts": return <AlertsView />;
       case "history": return <HistoryView />;
+      case "reports": return <ReportsView />;
       case "backup": return <BackupView />;
       case "settings": return <SettingsView />;
       default: return <PlaceholderView title={navItems.find(n => n.id === activeView)?.label || ""} />;
     }
   }, [activeView]);
 
+  const activeItem = useMemo(() => navItems.find(n => n.id === activeView), [activeView]);
+
   return (
-    <div className="flex h-screen bg-gray-50 text-gray-900 overflow-hidden font-sans">
+    <div className="flex flex-row-reverse h-screen bg-gray-50 text-gray-900 overflow-hidden font-sans">
       {/* Sidebar */}
       <aside 
         className={cn(
@@ -129,12 +133,12 @@ export default function App() {
             <h1 className="text-xl font-bold tracking-tight text-blue-950">نظام إدارة الطلاب</h1>
             <div className="h-8 w-[1px] bg-gray-200" />
             <div className="flex items-center gap-2 text-gray-400">
-               {navItems.find(n => n.id === activeView)?.icon && (
+               {activeItem?.icon && (
                  <div className="p-1.5 bg-gray-50 rounded-lg">
-                   {navItems.find(n => n.id === activeView)?.icon!({ size: 18 })}
+                   <activeItem.icon size={18} />
                  </div>
                )}
-               <span className="text-sm font-bold text-gray-400 capitalize">{activeView}</span>
+               <span className="text-sm font-bold text-gray-400 capitalize">{activeItem?.label || activeView}</span>
             </div>
           </div>
 
